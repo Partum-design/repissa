@@ -1,0 +1,1724 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>REPISSA – Espacios y Recubrimientos Especializados</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --orange:       #E07020;
+  --orange-hover: #c96010;
+  --dark:         #1a1a1a;
+  --dark-mid:     #2b2b2b;
+  --gray:         #6b6b6b;
+  --light-bg:     #f7f7f5;
+  --white:        #ffffff;
+  --font-h: 'Montserrat', sans-serif;
+  --font-b: 'Open Sans', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-b); color: var(--dark); overflow-x: hidden; }
+
+/* ─────────── NAVBAR ─────────── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6%;
+  height: 72px;
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 1px 20px rgba(0,0,0,0.08);
+  transition: background 0.3s;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.nav-logo img {
+  height: 112px;
+  width: auto;
+  display: block;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: var(--font-h);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dark);
+  text-decoration: none;
+  position: relative;
+  transition: color 0.2s;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: -4px; right: 0;
+  height: 2px;
+  background: var(--orange);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s;
+}
+
+.nav-links a:hover { color: var(--orange); }
+.nav-links a:hover::after { transform: scaleX(1); }
+.nav-links a.active { color: var(--orange); }
+.nav-links a.active::after { transform: scaleX(1); }
+
+.nav-cta {
+  background: var(--orange);
+  color: var(--white) !important;
+  font-family: var(--font-h);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 12px 24px;
+  border-radius: 4px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.2s, transform 0.15s;
+  white-space: nowrap;
+}
+
+.nav-cta:hover { background: var(--orange-hover) !important; transform: translateY(-1px); }
+.nav-cta::after { display: none !important; }
+
+/* ─────────── HERO ─────────── */
+#inicio {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hero-slider {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.hero-slide {
+  position: absolute;
+  inset: -4%;
+  background:
+    linear-gradient(
+      115deg,
+      rgba(18,22,26,0.56) 0%,
+      rgba(18,22,26,0.46) 45%,
+      rgba(18,22,26,0.34) 100%
+    ),
+    var(--hero-image) center/cover no-repeat;
+  transform: scale(1.02);
+  opacity: 1;
+  animation: heroStillMotion 18s ease-in-out infinite alternate;
+}
+
+.hero-slider .hero-slide:not(:first-child) {
+  display: none;
+}
+
+.hero-shape {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  filter: blur(10px);
+  opacity: 0.42;
+}
+
+.hero-shape-one {
+  top: 86px;
+  right: -80px;
+  width: 380px;
+  height: 380px;
+  background: linear-gradient(180deg, rgba(224,112,32,0.2), rgba(224,112,32,0.02));
+  clip-path: polygon(20% 0%, 100% 0%, 76% 100%, 0% 100%);
+  animation: floatShape 10s ease-in-out infinite;
+}
+
+.hero-shape-two {
+  left: -120px;
+  bottom: 90px;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.02) 64%, transparent 70%);
+  animation: floatShape 12s ease-in-out infinite reverse;
+}
+
+.hero-shape-three {
+  right: 24%;
+  bottom: 110px;
+  width: 120px;
+  height: 120px;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 24px;
+  transform: rotate(16deg);
+  animation: rotateShape 18s linear infinite;
+}
+
+.hero-overlay-strip {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(14,18,22,0.24) 0%, rgba(14,18,22,0.44) 52%, rgba(14,18,22,0.58) 100%);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  padding: 140px 6% 170px;
+  max-width: 1240px;
+  width: 100%;
+  text-align: left;
+  margin: 0 auto;
+}
+
+.hero-content > * {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.hero-content::before {
+  display: none;
+}
+
+.hero-copy {
+  max-width: 660px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  backdrop-filter: none;
+  border-radius: 0;
+  box-shadow: none;
+  margin: 0;
+}
+
+.hero-eyebrow,
+.hero-eyebrow * {
+  display: none !important;
+}
+
+.hero-heading {
+  font-family: var(--font-h);
+  font-weight: 900;
+  font-size: clamp(40px, 5.8vw, 74px);
+  line-height: 0.98;
+  color: var(--white);
+  margin-bottom: 0;
+  max-width: 660px;
+  margin-left: 0;
+  margin-right: 0;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.4s ease forwards;
+}
+
+.hero-heading-muted {
+  display: none;
+}
+
+.hero-desc {
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.8);
+  max-width: 460px;
+  line-height: 1.7;
+  margin-top: 22px;
+  margin-bottom: 28px;
+  margin-left: 0;
+  margin-right: 0;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.7s ease forwards;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.85s ease forwards;
+}
+
+.btn-orange {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--orange);
+  color: var(--white);
+  font-family: var(--font-h);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 14px 32px;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.btn-orange:hover { background: var(--orange-hover); transform: translateY(-2px); }
+
+.btn-outline-white {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--white);
+  font-family: var(--font-h);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 13px 32px;
+  border-radius: 4px;
+  border: 1.5px solid rgba(255,255,255,0.4);
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s, transform 0.15s;
+}
+
+.btn-outline-white:hover { border-color: rgba(255,255,255,0.8); transform: translateY(-2px); }
+
+#inicio .hero-actions .btn-orange,
+#inicio .hero-actions .btn-outline-white {
+  font-size: 0;
+}
+
+#inicio .hero-actions .btn-orange::after {
+  content: 'Ver servicios';
+  font-size: 13px;
+}
+
+#inicio .hero-actions .btn-outline-white::after {
+  content: 'Cotizar';
+  font-size: 13px;
+}
+
+#inicio .hero-actions .btn-orange,
+#inicio .hero-actions .btn-outline-white {
+  min-width: 172px;
+  justify-content: center;
+}
+
+/* Stat bar */
+.hero-stats-bar {
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  bottom: 28px;
+  max-width: 1060px;
+  margin: 0 auto;
+  background: rgba(16,18,22,0.74);
+  backdrop-filter: blur(12px);
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 22px;
+  z-index: 3;
+  opacity: 0;
+  animation: fadeLeft 0.7s 1.1s ease forwards;
+  overflow: hidden;
+}
+
+.hero-stat {
+  flex: 1;
+  padding: 18px 28px;
+  text-align: center;
+  border-left: 1px solid rgba(255,255,255,0.08);
+}
+
+.hero-stat:first-child { border-left: none; }
+
+.hero-stat-number {
+  font-family: var(--font-h);
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--orange);
+  line-height: 1;
+}
+
+.hero-stat-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.72);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-top: 6px;
+}
+
+#inicio .hero-stat-label {
+  font-size: 0;
+}
+
+#inicio .hero-stat:nth-child(1) .hero-stat-label::after {
+  content: 'Clientes corporativos';
+  font-size: 10px;
+}
+
+#inicio .hero-stat:nth-child(2) .hero-stat-label::after {
+  content: 'Lineas de servicio';
+  font-size: 10px;
+}
+
+#inicio .hero-stat:nth-child(3) .hero-stat-label::after {
+  content: 'Enfoque en calidad';
+  font-size: 10px;
+}
+
+.intro-strip {
+  padding: 56px 6% 62px;
+  align-items: stretch;
+}
+
+.intro-item {
+  padding: 0 32px;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeLeft {
+  from { opacity: 0; transform: translateX(30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes heroStillMotion {
+  from { transform: scale(1.02) translateY(0); }
+  to { transform: scale(1.06) translateY(-8px); }
+}
+
+@keyframes floatShape {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-18px); }
+}
+
+@keyframes rotateShape {
+  from { transform: rotate(16deg); }
+  to { transform: rotate(376deg); }
+}
+
+/* ─────────── INTRO STRIP ─────────── */
+.intro-strip {
+  background: var(--white);
+  padding: 72px 6%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.intro-item {
+  padding: 0 40px;
+  border-right: 1px solid #ebebeb;
+}
+
+.intro-item:first-child { padding-left: 0; }
+.intro-item:last-child  { padding-right: 0; border-right: none; }
+
+.intro-item-icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(224,112,32,0.1);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.intro-item-icon svg {
+  width: 24px;
+  height: 24px;
+  stroke: var(--orange);
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.intro-item h3 {
+  font-family: var(--font-h);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 8px;
+}
+
+.intro-item p {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--gray);
+  line-height: 1.7;
+}
+
+/* ─────────── NOSOTROS ─────────── */
+#nosotros {
+  background: var(--light-bg);
+  padding: 100px 6%;
+}
+
+.nosotros-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.nosotros-image-wrap {
+  position: relative;
+}
+
+.nosotros-img {
+  width: 100%;
+  height: 480px;
+  object-fit: cover;
+  border-radius: 4px;
+  display: block;
+}
+
+.nosotros-img-placeholder {
+  width: 100%;
+  height: 480px;
+  border-radius: 4px;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(30,30,30,0.88) 0%,
+      rgba(30,30,30,0.55) 100%
+    ),
+    url('https://images.unsplash.com/photo-1601987177651-8edfe6c20009?w=900&q=80&auto=format&fit=crop')
+    center/cover no-repeat;
+}
+
+.nosotros-badge {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  background: var(--orange);
+  color: var(--white);
+  padding: 24px 28px;
+  border-radius: 4px;
+  text-align: center;
+  box-shadow: 0 12px 36px rgba(224,112,32,0.35);
+}
+
+.nosotros-badge-num {
+  font-family: var(--font-h);
+  font-size: 44px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.nosotros-badge-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-top: 4px;
+  opacity: 0.85;
+}
+
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.section-tag-line { width: 28px; height: 2px; background: var(--orange); }
+
+.section-tag span {
+  font-family: var(--font-h);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--orange);
+}
+
+.section-title {
+  font-family: var(--font-h);
+  font-size: clamp(30px, 4vw, 46px);
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--dark);
+  margin-bottom: 20px;
+}
+
+.section-title em { font-style: normal; color: var(--orange); }
+
+.section-body {
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--gray);
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.quote-block {
+  border-left: 3px solid var(--orange);
+  padding: 12px 0 12px 20px;
+  margin: 24px 0 32px;
+}
+
+.quote-block p {
+  font-family: var(--font-h);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--dark);
+  line-height: 1.5;
+  font-style: italic;
+}
+
+.valores-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.valor-chip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--white);
+  border: 1px solid #e8e8e8;
+  border-radius: 6px;
+  padding: 12px 16px;
+}
+
+.valor-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--orange);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.valor-chip span {
+  font-family: var(--font-h);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dark);
+}
+
+/* ─────────── SERVICIOS ─────────── */
+#servicios {
+  background: var(--dark);
+  padding: 100px 6%;
+}
+
+#servicios .section-title { color: var(--white); }
+
+.servicios-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 56px;
+}
+
+.servicios-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.servicio-card {
+  background: var(--dark-mid);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.05);
+  transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+  cursor: default;
+}
+
+.servicio-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+  border-color: rgba(224,112,32,0.4);
+}
+
+.servicio-thumb {
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+}
+
+.servicio-thumb-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.4s;
+}
+
+.servicio-card:hover .servicio-thumb-bg { transform: scale(1.06); }
+
+.servicio-thumb-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(26,26,26,0.8));
+}
+
+.servicio-thumb-num {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-family: var(--font-h);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--orange);
+  letter-spacing: 0.1em;
+  background: rgba(0,0,0,0.5);
+  padding: 4px 10px;
+  border-radius: 2px;
+}
+
+.servicio-body {
+  padding: 28px 28px 32px;
+}
+
+.servicio-icon {
+  width: 44px;
+  height: 44px;
+  background: rgba(224,112,32,0.12);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.servicio-icon svg {
+  width: 22px; height: 22px;
+  stroke: var(--orange);
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.servicio-card h3 {
+  font-family: var(--font-h);
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+
+.servicio-card p {
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.65;
+  margin-bottom: 20px;
+}
+
+.servicio-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.servicio-items-list span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  color: rgba(255,255,255,0.45);
+}
+
+.servicio-items-list span::before {
+  content: '';
+  width: 4px; height: 4px;
+  background: var(--orange);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ─────────── CLIENTES ─────────── */
+#clientes {
+  background: var(--white);
+  padding: 80px 6%;
+  text-align: center;
+}
+
+.clientes-header {
+  max-width: 560px;
+  margin: 0 auto 56px;
+}
+
+.clientes-header .section-tag { justify-content: center; }
+
+.clientes-header .section-title { font-size: clamp(28px, 3.5vw, 40px); }
+
+.clientes-logos {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  background: #e8e8e8;
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  overflow: hidden;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.cliente-logo-item {
+  background: var(--white);
+  padding: 30px 22px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  min-height: 160px;
+  transition: background 0.2s;
+}
+
+.cliente-logo-item:hover { background: var(--light-bg); }
+
+.cliente-img-wrap {
+  width: 100%;
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cliente-img-wrap img {
+  display: block;
+  width: auto;
+  max-width: 165px;
+  max-height: 58px;
+  object-fit: contain;
+}
+
+.clientes-logos .cliente-logo-item:nth-child(3) .cliente-img-wrap img {
+  max-width: 240px;
+  max-height: 92px;
+}
+
+.clientes-logos .cliente-logo-item:nth-child(8) .cliente-img-wrap img {
+  max-width: 230px;
+  max-height: 86px;
+}
+
+.cliente-img-wrap img.logo-tall {
+  max-height: 64px;
+}
+
+.cliente-img-wrap img.logo-small {
+  max-width: 185px;
+  max-height: 72px;
+}
+
+.cliente-circle {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: var(--light-bg);
+  border: 2px solid rgba(224,112,32,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-h);
+  font-size: 18px;
+  font-weight: 900;
+  color: var(--orange);
+  letter-spacing: 0.04em;
+}
+
+.cliente-name {
+  font-family: var(--font-h);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--dark);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.cliente-sector {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--gray);
+  letter-spacing: 0.08em;
+}
+
+/* ─────────── CTA BAND ─────────── */
+.cta-band {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(20,20,20,0.95) 0%,
+      rgba(20,20,20,0.75) 100%
+    ),
+    url('https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=1600&q=80&auto=format&fit=crop')
+    center/cover no-repeat;
+  padding: 80px 6%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.cta-band-text h2 {
+  font-family: var(--font-h);
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 10px;
+  line-height: 1.15;
+}
+
+.cta-band-text p {
+  font-size: 15px;
+  color: rgba(255,255,255,0.6);
+  max-width: 480px;
+  line-height: 1.7;
+}
+
+/* ─────────── CONTACTO ─────────── */
+#contacto {
+  background: var(--light-bg);
+  padding: 100px 6%;
+}
+
+.contacto-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 72px;
+  align-items: start;
+}
+
+.contacto-info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 36px;
+}
+
+.contacto-info-item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.ci-icon {
+  width: 46px;
+  height: 46px;
+  background: var(--orange);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ci-icon svg {
+  width: 20px; height: 20px;
+  stroke: var(--white);
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.ci-text label {
+  display: block;
+  font-family: var(--font-h);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 3px;
+}
+
+.ci-text a, .ci-text p {
+  font-size: 14.5px;
+  font-weight: 400;
+  color: var(--dark);
+  text-decoration: none;
+  line-height: 1.55;
+}
+
+.ci-text a:hover { color: var(--orange); }
+
+/* Form */
+.contacto-form-wrap {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 44px 40px;
+  box-shadow: 0 4px 40px rgba(0,0,0,0.07);
+}
+
+.form-title {
+  font-family: var(--font-h);
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--dark);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+}
+
+.form-subtitle {
+  font-size: 13.5px;
+  color: var(--gray);
+  margin-bottom: 28px;
+  line-height: 1.6;
+}
+
+.f-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.f-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 14px;
+}
+
+.f-group label {
+  font-family: var(--font-h);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #999;
+}
+
+.f-group input,
+.f-group select,
+.f-group textarea {
+  background: var(--light-bg);
+  border: 1.5px solid #e0e0e0;
+  border-radius: 6px;
+  font-family: var(--font-b);
+  font-size: 14px;
+  color: var(--dark);
+  padding: 12px 14px;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+  width: 100%;
+}
+
+.f-group input:focus,
+.f-group select:focus,
+.f-group textarea:focus {
+  border-color: var(--orange);
+  background: var(--white);
+}
+
+.f-group textarea { resize: vertical; min-height: 96px; }
+
+.f-submit {
+  width: 100%;
+  background: var(--orange);
+  color: var(--white);
+  font-family: var(--font-h);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  margin-top: 8px;
+}
+
+.f-submit:hover { background: var(--orange-hover); transform: translateY(-1px); }
+
+/* ─────────── FOOTER ─────────── */
+footer {
+  background: var(--dark);
+  padding: 60px 6% 28px;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  margin-bottom: 28px;
+}
+
+.footer-brand-col {}
+
+.footer-logo-text {
+  font-family: var(--font-h);
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--white);
+  letter-spacing: 0.08em;
+  margin-bottom: 4px;
+}
+
+.footer-logo-text span { color: var(--orange); }
+
+.footer-logo-sub {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 16px;
+}
+
+.footer-brand-desc {
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  line-height: 1.75;
+  max-width: 260px;
+}
+
+.footer-col-title {
+  font-family: var(--font-h);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 20px;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-links a {
+  font-size: 13.5px;
+  color: rgba(255,255,255,0.45);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover { color: var(--orange); }
+
+.footer-contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.footer-contact-item svg {
+  width: 15px; height: 15px;
+  stroke: var(--orange);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.footer-contact-item span {
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  line-height: 1.5;
+}
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-copy {
+  font-size: 12px;
+  color: rgba(255,255,255,0.2);
+}
+
+.footer-web {
+  font-family: var(--font-h);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--orange);
+  text-decoration: none;
+}
+
+/* ─────────── WHATSAPP BUTTON ─────────── */
+.wa-btn {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 999;
+  width: 56px;
+  height: 56px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.wa-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 28px rgba(37,211,102,0.55);
+}
+
+.wa-btn svg {
+  width: 28px; height: 28px;
+  fill: var(--white);
+}
+
+/* ─────────── RESPONSIVE ─────────── */
+@media (max-width: 960px) {
+  .hero-content {
+    padding: 126px 6% 150px;
+  }
+  .hero-content > * {
+    padding-left: 28px;
+    padding-right: 28px;
+  }
+  .hero-stats-bar {
+    left: 6%;
+    right: 6%;
+    bottom: 18px;
+  }
+  .hero-stat {
+    padding: 16px 18px;
+  }
+  .nosotros-inner   { grid-template-columns: 1fr; }
+  .servicios-grid   { grid-template-columns: 1fr; }
+  .clientes-logos   { grid-template-columns: repeat(2, 1fr); }
+  .contacto-grid    { grid-template-columns: 1fr; }
+  .footer-top       { grid-template-columns: 1fr 1fr; }
+  .servicios-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+  .intro-strip      { grid-template-columns: 1fr; }
+  .intro-item       { border-right: none; border-bottom: 1px solid #ebebeb; padding: 24px 0; }
+  .intro-item:last-child { border-bottom: none; }
+}
+
+@media (max-width: 640px) {
+  .hero-content {
+    padding: 118px 6% 178px;
+  }
+  .hero-content > * {
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+  .hero-heading,
+  .hero-heading-muted {
+    font-size: clamp(36px, 11vw, 52px);
+  }
+  .hero-stats-bar {
+    flex-direction: column;
+    border-radius: 18px;
+  }
+  .hero-stat {
+    border-left: none;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .hero-stat:first-child {
+    border-top: none;
+  }
+  .nav-links { display: none; }
+  .f-row     { grid-template-columns: 1fr; }
+  .clientes-logos { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr; }
+  .valores-grid { grid-template-columns: 1fr; }
+  .nosotros-badge { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ─── NAVBAR ─── -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="Mesa_de_trabajo_1_300x.png" alt="REPISSA – Espacios y Recubrimientos Especializados">
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#inicio" class="active">Inicio</a></li>
+    <li><a href="repissa-servicios.html">Servicios</a></li>
+    <li><a href="#clientes">Clientes</a></li>
+    <li><a href="repissa-contacto.html">Contacto</a></li>
+  </ul>
+
+  <a href="repissa-contacto.html" class="nav-cta">Cotizar</a>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section id="inicio">
+  <div class="hero-slider">
+    <div class="hero-slide" style="--hero-image:url('https://images.unsplash.com/photo-1536895058696-a69b1c7ba34f?w=1920&q=80&auto=format&fit=crop');"></div>
+    <div class="hero-slide" style="--hero-image:url('https://images.unsplash.com/photo-1517581177682-a085bb7ffb15?w=1920&q=80&auto=format&fit=crop');"></div>
+    <div class="hero-slide" style="--hero-image:url('https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1920&q=80&auto=format&fit=crop');"></div>
+  </div>
+  <div class="hero-shape hero-shape-one"></div>
+  <div class="hero-shape hero-shape-two"></div>
+  <div class="hero-shape hero-shape-three"></div>
+  <div class="hero-overlay-strip"></div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <div class="eyebrow-line"></div>
+      <span>Recubrimientos industriales · Impermeabilización · Cancelería</span>
+    </div>
+    <h1 class="hero-heading">
+      Protegemos, transformamos
+    </h1>
+    <p class="hero-heading-muted">y recubrimos espacios.</p>
+    <p class="hero-desc">
+      Empresa especializada en recubrimientos epóxicos, impermeabilizantes y cancelería. Experiencia, calidad y compromiso en cada proyecto industrial y residencial.
+    </p>
+    <div class="hero-actions">
+      <a href="repissa-servicios.html" class="btn-orange">Ver servicios &nbsp;→</a>
+      <a href="repissa-contacto.html" class="btn-outline-white">Solicitar cotización</a>
+    </div>
+  </div>
+
+  <div class="hero-stats-bar">
+    <div class="hero-stat">
+      <div class="hero-stat-number">9+</div>
+      <div class="hero-stat-label">Clientes corp.</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-number">3</div>
+      <div class="hero-stat-label">Líneas de servicio</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-number">100%</div>
+      <div class="hero-stat-label">Compromiso</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── INTRO STRIP ─── -->
+<div class="intro-strip">
+  <div class="intro-item">
+    <div class="intro-item-icon">
+      <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    </div>
+    <h3>Responsabilidad</h3>
+    <p>Trabajos entregados en tiempo y forma, con la calidad comprometida desde el primer día.</p>
+  </div>
+  <div class="intro-item">
+    <div class="intro-item-icon">
+      <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+    </div>
+    <h3>Honestidad</h3>
+    <p>Materiales correctos en cada proceso y sistemas adecuados para cada tipo de superficie.</p>
+  </div>
+  <div class="intro-item">
+    <div class="intro-item-icon">
+      <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    </div>
+    <h3>Liderazgo</h3>
+    <p>Innovación continua en procesos para ofrecer siempre el mejor servicio del mercado.</p>
+  </div>
+</div>
+
+<!-- ─── NOSOTROS ─── -->
+<section id="nosotros">
+  <div class="nosotros-inner">
+    <div class="nosotros-image-wrap">
+      <div class="nosotros-img-placeholder"></div>
+      <div class="nosotros-badge">
+        <div class="nosotros-badge-num">9+</div>
+        <div class="nosotros-badge-label">Clientes<br>corporativos</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-tag">
+        <div class="section-tag-line"></div>
+        <span>Quiénes somos</span>
+      </div>
+      <h2 class="section-title">Expertos en<br><em>Recubrimientos</em><br>Especializados</h2>
+      <p class="section-body">
+        Somos una empresa dedicada a la aplicación de epóxicos, impermeabilización y cancelería mediante áreas especializadas.
+      </p>
+      <div class="quote-block">
+        <p>"Nuestra experiencia, trabajo y mejora continua nos permite imponernos en el mercado como la mejor opción para la industria."</p>
+      </div>
+      <p class="section-body">
+        Atendemos proyectos residenciales, comerciales e industriales en todo México, garantizando calidad y durabilidad en cada metro cuadrado aplicado.
+      </p>
+      <div class="valores-grid">
+        <div class="valor-chip"><div class="valor-dot"></div><span>Responsabilidad</span></div>
+        <div class="valor-chip"><div class="valor-dot"></div><span>Honestidad</span></div>
+        <div class="valor-chip"><div class="valor-dot"></div><span>Compromiso</span></div>
+        <div class="valor-chip"><div class="valor-dot"></div><span>Liderazgo</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SERVICIOS ─── -->
+<section id="servicios">
+  <div class="servicios-header">
+    <div>
+      <div class="section-tag">
+        <div class="section-tag-line"></div>
+        <span>Lo que hacemos</span>
+      </div>
+      <h2 class="section-title">Nuestros <em>Servicios</em></h2>
+    </div>
+    <a href="repissa-contacto.html" class="btn-orange">Solicitar cotización →</a>
+  </div>
+
+  <div class="servicios-grid">
+
+    <!-- Card 1 -->
+    <div class="servicio-card">
+      <div class="servicio-thumb">
+        <div class="servicio-thumb-bg" style="background-image: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80&auto=format&fit=crop');"></div>
+        <div class="servicio-thumb-overlay"></div>
+        <div class="servicio-thumb-num">01</div>
+      </div>
+      <div class="servicio-body">
+        <div class="servicio-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="15" rx="1"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+        </div>
+        <h3>Recubrimientos Industriales</h3>
+        <p>Pisos y superficies especiales para entornos de alto rendimiento y exigencia.</p>
+        <div class="servicio-items-list">
+          <span>Autonivelantes y antiderrapantes</span>
+          <span>Sistemas antiestáticos y conductivos</span>
+          <span>Curva y muros liso sanitarios</span>
+          <span>Sistema para helipuertos y hangares</span>
+          <span>Barrera de vapor y niveladores</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="servicio-card">
+      <div class="servicio-thumb">
+        <div class="servicio-thumb-bg" style="background-image: url('https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&q=80&auto=format&fit=crop');"></div>
+        <div class="servicio-thumb-overlay"></div>
+        <div class="servicio-thumb-num">02</div>
+      </div>
+      <div class="servicio-body">
+        <div class="servicio-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+        </div>
+        <h3>Impermeabilizantes</h3>
+        <p>Protección total contra la humedad para toda clase de estructuras y superficies.</p>
+        <div class="servicio-items-list">
+          <span>Cementosos para muros de contención</span>
+          <span>Poliuretanos y poliéster-poliéster</span>
+          <span>Acrílicos de secado rápido</span>
+          <span>Para albercas y jardineras</span>
+          <span>Gravilla y autoadheribles</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="servicio-card">
+      <div class="servicio-thumb">
+        <div class="servicio-thumb-bg" style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80&auto=format&fit=crop');"></div>
+        <div class="servicio-thumb-overlay"></div>
+        <div class="servicio-thumb-num">03</div>
+      </div>
+      <div class="servicio-body">
+        <div class="servicio-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h3>Cancelería</h3>
+        <p>Soluciones en cancelería sanitaria y residencial con acabados de alta durabilidad.</p>
+        <div class="servicio-items-list">
+          <span>Puertas, ventanas y canceles</span>
+          <span>Puertas de emergencia</span>
+          <span>Puertas holandesas y domos</span>
+          <span>Sistemas para áreas deportivas</span>
+          <span>Grouts especiales</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── CLIENTES ─── -->
+<section id="clientes">
+  <div class="clientes-header">
+    <div class="section-tag" style="justify-content:center;">
+      <div class="section-tag-line"></div>
+      <span>Empresas que confían en nosotros</span>
+    </div>
+    <h2 class="section-title">Nuestros <em>Clientes</em></h2>
+    <p style="font-size:15px;color:#6b6b6b;line-height:1.7;">Hemos trabajado con empresas líderes de diferentes industrias, entregando proyectos de alto nivel y calidad comprobada.</p>
+  </div>
+
+  <div class="clientes-logos">
+    <div class="cliente-logo-item">
+      <div class="cliente-img-wrap">
+        <img src="eisman.png" alt="Eissmann Group Automotive">
+      </div>
+      <div class="cliente-name">Eissmann Automotive</div>
+    </div>
+    <div class="cliente-logo-item">
+      <div class="cliente-img-wrap">
+        <img src="Kellogg_27s-Logo.png" alt="Kellogg's">
+      </div>
+      <div class="cliente-name">Kellogg's</div>
+    </div>
+    <div class="cliente-logo-item">
+      <div class="cliente-img-wrap">
+        <img src="Elektra-logo.png" alt="Grupo Elektra" class="logo-tall">
+      </div>
+      <div class="cliente-name">Grupo Elektra</div>
+    </div>
+    <div class="cliente-logo-item">
+      <div class="cliente-img-wrap">
+        <img src="valeo.png" alt="Valeo" class="logo-tall">
+      </div>
+      <div class="cliente-name">Valeo</div>
+    </div>
+    <div class="cliente-logo-item">
+      <div class="cliente-img-wrap">
+        <img src="sanofi.png" alt="Sanofi" class="logo-small">
+      </div>
+      <div class="cliente-name">Sanofi</div>
+    </div>
+    <div class="cliente-logo-item">
+      <div class="cliente-img-wrap">
+        <img src="cuautemoc.png" alt="Cuauhtémoc Moctezuma">
+      </div>
+      <div class="cliente-name">Cuauhtémoc Moctezuma</div>
+    </div>
+    <div class="cliente-logo-item">
+      <div class="cliente-img-wrap">
+        <img src="wtc.png" alt="World Trade Center CDMX" class="logo-small">
+      </div>
+      <div class="cliente-name">WTC Ciudad de México</div>
+    </div>
+    <div class="cliente-logo-item">
+      <div class="cliente-img-wrap">
+        <img src="aztrazeneca.png" alt="AstraZeneca" class="logo-small">
+      </div>
+      <div class="cliente-name">AstraZeneca</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA BAND ─── -->
+<div class="cta-band">
+  <div class="cta-band-text">
+    <h2>¿Tienes un proyecto<br>en mente?</h2>
+    <p>Cuéntanos de tu espacio y te asesoramos sin costo. Trabajamos en todo el Estado de México y CDMX.</p>
+  </div>
+  <a href="repissa-contacto.html" class="btn-orange" style="font-size:15px;padding:16px 40px;white-space:nowrap;">Hablemos de tu proyecto &nbsp;→</a>
+</div>
+
+<!-- ─── CONTACTO ─── -->
+<section id="contacto">
+  <div class="contacto-grid">
+    <div>
+      <div class="section-tag">
+        <div class="section-tag-line"></div>
+        <span>Estamos para servirte</span>
+      </div>
+      <h2 class="section-title">Contáctanos<br><em>hoy mismo</em></h2>
+      <p class="section-body">Solicita tu cotización sin compromiso. Nos pondremos en contacto a la brevedad.</p>
+
+      <div class="contacto-info-list">
+        <div class="contacto-info-item">
+          <div class="ci-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div class="ci-text">
+            <label>Teléfono</label>
+            <a href="tel:+527226498706">+52 1 722 649 8706</a>
+          </div>
+        </div>
+        <div class="contacto-info-item">
+          <div class="ci-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div class="ci-text">
+            <label>Correo</label>
+            <a href="mailto:ventas@repissa.com.mx">ventas@repissa.com.mx</a>
+          </div>
+        </div>
+        <div class="contacto-info-item">
+          <div class="ci-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="ci-text">
+            <label>Dirección</label>
+            <p>Independencia S/N, Barrio San Pedro la Cabecera<br>Ixtlahuaca, Estado de México</p>
+          </div>
+        </div>
+        <div class="contacto-info-item">
+          <div class="ci-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <div class="ci-text">
+            <label>Sitio web</label>
+            <a href="https://www.repissa.com.mx" target="_blank">www.repissa.com.mx</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contacto-form-wrap">
+      <p class="form-title">Envíanos un mensaje</p>
+      <p class="form-subtitle">Completa el formulario y recibe tu cotización en menos de 24 horas.</p>
+
+      <div class="f-row">
+        <div class="f-group">
+          <label>Nombre</label>
+          <input type="text" placeholder="Tu nombre completo">
+        </div>
+        <div class="f-group">
+          <label>Empresa</label>
+          <input type="text" placeholder="Nombre de la empresa">
+        </div>
+      </div>
+      <div class="f-row">
+        <div class="f-group">
+          <label>Teléfono</label>
+          <input type="tel" placeholder="+52 000 000 0000">
+        </div>
+        <div class="f-group">
+          <label>Correo</label>
+          <input type="email" placeholder="correo@empresa.com">
+        </div>
+      </div>
+      <div class="f-group">
+        <label>Servicio de interés</label>
+        <select>
+          <option value="" disabled selected>Selecciona un servicio...</option>
+          <option>Recubrimientos industriales – Pisos</option>
+          <option>Recubrimientos especiales (helipuertos, hangares)</option>
+          <option>Impermeabilizantes</option>
+          <option>Cancelería sanitaria</option>
+          <option>Cancelería residencial</option>
+          <option>Otro / Consulta general</option>
+        </select>
+      </div>
+      <div class="f-group">
+        <label>Descripción del proyecto</label>
+        <textarea placeholder="Cuéntanos sobre tu proyecto: área aproximada, tipo de superficie, ubicación..."></textarea>
+      </div>
+      <button class="f-submit" onclick="alert('¡Gracias! Nos pondremos en contacto a la brevedad.')">
+        Enviar cotización &nbsp;→
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand-col">
+      <img src="Mesa_de_trabajo_1_300x.png" alt="REPISSA – Espacios y Recubrimientos Especializados" style="height:120px;width:auto;display:block;margin-bottom:16px;">
+      <p class="footer-brand-desc">
+        Empresa especializada en recubrimientos epóxicos, impermeabilizantes y cancelería. Calidad y compromiso en cada proyecto.
+      </p>
+    </div>
+
+    <div>
+      <p class="footer-col-title">Navegación</p>
+      <ul class="footer-links">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="repissa-servicios.html">Servicios</a></li>
+        <li><a href="#clientes">Clientes</a></li>
+        <li><a href="repissa-contacto.html">Contacto</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <p class="footer-col-title">Servicios</p>
+      <ul class="footer-links">
+        <li><a href="repissa-servicios.html#recubrimientos">Recubrimientos Industriales</a></li>
+        <li><a href="repissa-servicios.html#impermeabilizantes">Impermeabilizantes</a></li>
+        <li><a href="repissa-servicios.html#canceleria">Cancelería Sanitaria</a></li>
+        <li><a href="repissa-servicios.html#canceleria">Cancelería Residencial</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <p class="footer-col-title">Contacto</p>
+      <div class="footer-contact-item">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span>+52 1 722 649 8706</span>
+      </div>
+      <div class="footer-contact-item">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span>ventas@repissa.com.mx</span>
+      </div>
+      <div class="footer-contact-item">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>Ixtlahuaca, Edo. México</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 REPISSA – Todos los derechos reservados.</p>
+    <a href="https://www.repissa.com.mx" target="_blank" class="footer-web">www.repissa.com.mx</a>
+  </div>
+</footer>
+
+<!-- ─── WHATSAPP FLOTANTE ─── -->
+<a href="https://wa.me/527226498706?text=Hola%2C%20me%20gustar%C3%ADa%20solicitar%20una%20cotización" 
+   target="_blank" class="wa-btn" title="Escríbenos por WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12.003 2C6.477 2 2.003 6.474 2.003 12c0 1.885.52 3.651 1.425 5.17L2 22l4.946-1.387A9.948 9.948 0 0012.003 22C17.529 22 22 17.526 22 12S17.529 2 12.003 2zm0 18.18a8.17 8.17 0 01-4.434-1.302l-.317-.189-3.287.921.927-3.21-.207-.329A8.177 8.177 0 013.82 12c0-4.51 3.672-8.18 8.183-8.18 4.51 0 8.182 3.67 8.182 8.18 0 4.51-3.672 8.18-8.182 8.18z"/>
+  </svg>
+</a>
+
+</body>
+</html>
