@@ -34,9 +34,10 @@ nav {
   justify-content: space-between;
   padding: 0 6%;
   height: 72px;
-  background: rgba(255,255,255,0.97);
-  backdrop-filter: blur(10px);
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(8px);
   box-shadow: 0 1px 20px rgba(0,0,0,0.08);
+  transition: background 0.3s;
 }
 
 .nav-logo {
@@ -46,7 +47,7 @@ nav {
 }
 
 .nav-logo img {
-  height: 90px;
+  height: 112px;
   width: auto;
   display: block;
 }
@@ -70,12 +71,25 @@ nav {
   transition: color 0.2s;
 }
 
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: -4px; right: 0;
+  height: 2px;
+  background: var(--orange);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s;
+}
+
 .nav-links a:hover { color: var(--orange); }
+.nav-links a:hover::after { transform: scaleX(1); }
 .nav-links a.active { color: var(--orange); }
+.nav-links a.active::after { transform: scaleX(1); }
 
 .nav-cta {
   background: var(--orange);
-  color: var(--white);
+  color: var(--white) !important;
   font-family: var(--font-h);
   font-size: 13px;
   font-weight: 700;
@@ -84,10 +98,13 @@ nav {
   padding: 12px 24px;
   border-radius: 4px;
   text-decoration: none;
+  display: flex;
+  align-items: center;
   transition: background 0.2s, transform 0.15s;
   white-space: nowrap;
 }
 .nav-cta:hover { background: var(--orange-hover); transform: translateY(-1px); }
+.nav-cta::after { display: none !important; }
 
 /* ─── PAGE HERO ─── */
 .page-hero {
@@ -850,8 +867,7 @@ footer {
 
   <ul class="nav-links">
     <li><a href="index.html">Inicio</a></li>
-    <li><a href="index.html#nosotros">Nosotros</a></li>
-    <li><a href="#" class="active">Servicios</a></li>
+    <li><a href="repissa-servicios.html" class="active">Servicios</a></li>
     <li><a href="index.html#clientes">Clientes</a></li>
     <li><a href="repissa-contacto.html">Contacto</a></li>
   </ul>
