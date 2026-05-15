@@ -16,6 +16,7 @@
   --gray:         #6b6b6b;
   --light-bg:     #f7f7f5;
   --white:        #ffffff;
+  --ease-smooth:  cubic-bezier(0.22, 1, 0.36, 1);
   --font-h: 'Montserrat', sans-serif;
   --font-b: 'Open Sans', sans-serif;
 }
@@ -270,6 +271,8 @@ nav {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  position: relative;
+  overflow: hidden;
   background: var(--orange);
   color: var(--white);
   font-family: var(--font-h);
@@ -280,15 +283,35 @@ nav {
   padding: 14px 32px;
   border-radius: 4px;
   text-decoration: none;
-  transition: background 0.2s, transform 0.15s;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.25s;
 }
 
-.btn-orange:hover { background: var(--orange-hover); transform: translateY(-2px); }
+.btn-orange::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -120%;
+  width: 62%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.28), transparent);
+  transform: skewX(-22deg);
+  transition: left 0.65s var(--ease-smooth);
+}
+
+.btn-orange:hover {
+  background: var(--orange-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 32px rgba(224,112,32,0.24);
+}
+
+.btn-orange:hover::before { left: 155%; }
 
 .btn-outline-white {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  position: relative;
+  overflow: hidden;
   background: transparent;
   color: var(--white);
   font-family: var(--font-h);
@@ -300,10 +323,14 @@ nav {
   border-radius: 4px;
   border: 1.5px solid rgba(255,255,255,0.4);
   text-decoration: none;
-  transition: border-color 0.2s, color 0.2s, transform 0.15s;
+  transition: border-color 0.2s, color 0.2s, transform 0.15s, background 0.25s;
 }
 
-.btn-outline-white:hover { border-color: rgba(255,255,255,0.8); transform: translateY(-2px); }
+.btn-outline-white:hover {
+  border-color: rgba(255,255,255,0.8);
+  background: rgba(255,255,255,0.08);
+  transform: translateY(-2px);
+}
 
 #inicio .hero-actions .btn-orange,
 #inicio .hero-actions .btn-outline-white {
@@ -438,6 +465,7 @@ nav {
 .intro-item {
   padding: 0 40px;
   border-right: 1px solid #ebebeb;
+  transition: transform 0.35s var(--ease-smooth);
 }
 
 .intro-item:first-child { padding-left: 0; }
@@ -452,6 +480,7 @@ nav {
   align-items: center;
   justify-content: center;
   margin-bottom: 16px;
+  transition: transform 0.35s var(--ease-smooth), box-shadow 0.35s ease;
 }
 
 .intro-item-icon svg {
@@ -477,6 +506,13 @@ nav {
   font-weight: 400;
   color: var(--gray);
   line-height: 1.7;
+}
+
+.intro-item:hover { transform: translateY(-6px); }
+
+.intro-item:hover .intro-item-icon {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 28px rgba(224,112,32,0.14);
 }
 
 /* ─────────── NOSOTROS ─────────── */
@@ -508,6 +544,7 @@ nav {
   width: 100%;
   height: 480px;
   border-radius: 4px;
+  box-shadow: 0 24px 48px rgba(0,0,0,0.16);
   background:
     linear-gradient(
       135deg,
@@ -516,6 +553,12 @@ nav {
     ),
     url('https://images.unsplash.com/photo-1601987177651-8edfe6c20009?w=900&q=80&auto=format&fit=crop')
     center/cover no-repeat;
+  transition: transform 0.6s var(--ease-smooth), box-shadow 0.6s var(--ease-smooth);
+}
+
+.nosotros-image-wrap:hover .nosotros-img-placeholder {
+  transform: scale(1.018);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.2);
 }
 
 .nosotros-badge {
@@ -613,6 +656,7 @@ nav {
   border: 1px solid #e8e8e8;
   border-radius: 6px;
   padding: 12px 16px;
+  transition: transform 0.3s var(--ease-smooth), border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .valor-dot {
@@ -630,6 +674,12 @@ nav {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--dark);
+}
+
+.valor-chip:hover {
+  transform: translateY(-4px);
+  border-color: rgba(224,112,32,0.25);
+  box-shadow: 0 14px 24px rgba(0,0,0,0.06);
 }
 
 /* ─────────── SERVICIOS ─────────── */
@@ -658,8 +708,19 @@ nav {
   border-radius: 8px;
   overflow: hidden;
   border: 1px solid rgba(255,255,255,0.05);
+  position: relative;
   transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
   cursor: default;
+}
+
+.servicio-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 18%, rgba(255,255,255,0.08) 46%, transparent 72%);
+  transform: translateX(-135%);
+  transition: transform 0.85s var(--ease-smooth);
+  pointer-events: none;
 }
 
 .servicio-card:hover {
@@ -667,6 +728,8 @@ nav {
   box-shadow: 0 20px 50px rgba(0,0,0,0.4);
   border-color: rgba(224,112,32,0.4);
 }
+
+.servicio-card:hover::before { transform: translateX(135%); }
 
 .servicio-thumb {
   height: 200px;
@@ -807,10 +870,14 @@ nav {
   justify-content: center;
   gap: 14px;
   min-height: 160px;
-  transition: background 0.2s;
+  transition: background 0.25s, transform 0.3s var(--ease-smooth), box-shadow 0.3s ease;
 }
 
-.cliente-logo-item:hover { background: var(--light-bg); }
+.cliente-logo-item:hover {
+  background: var(--light-bg);
+  transform: translateY(-5px);
+  box-shadow: inset 0 0 0 1px rgba(224,112,32,0.1);
+}
 
 .cliente-img-wrap {
   width: 100%;
@@ -883,6 +950,8 @@ nav {
 
 /* ─────────── CTA BAND ─────────── */
 .cta-band {
+  position: relative;
+  overflow: hidden;
   background:
     linear-gradient(
       90deg,
@@ -897,6 +966,38 @@ nav {
   justify-content: space-between;
   gap: 32px;
   flex-wrap: wrap;
+  animation: ctaDrift 18s ease-in-out infinite alternate;
+}
+
+.cta-band::before,
+.cta-band::after {
+  content: '';
+  position: absolute;
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+.cta-band::before {
+  width: 280px;
+  height: 280px;
+  top: -120px;
+  right: -60px;
+  background: radial-gradient(circle, rgba(224,112,32,0.22) 0%, rgba(224,112,32,0) 72%);
+  animation: floatShape 14s ease-in-out infinite;
+}
+
+.cta-band::after {
+  width: 220px;
+  height: 220px;
+  left: 24%;
+  bottom: -120px;
+  background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0) 70%);
+  animation: floatShape 16s ease-in-out infinite reverse;
+}
+
+.cta-band > * {
+  position: relative;
+  z-index: 1;
 }
 
 .cta-band-text h2 {
@@ -939,7 +1040,10 @@ nav {
   display: flex;
   gap: 16px;
   align-items: flex-start;
+  transition: transform 0.3s var(--ease-smooth);
 }
+
+.contacto-info-item:hover { transform: translateX(6px); }
 
 .ci-icon {
   width: 46px;
@@ -988,6 +1092,12 @@ nav {
   border-radius: 12px;
   padding: 44px 40px;
   box-shadow: 0 4px 40px rgba(0,0,0,0.07);
+  transition: transform 0.35s var(--ease-smooth), box-shadow 0.35s ease;
+}
+
+.contacto-form-wrap:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 54px rgba(0,0,0,0.1);
 }
 
 .form-title {
@@ -1219,6 +1329,7 @@ footer {
   box-shadow: 0 4px 20px rgba(37,211,102,0.4);
   text-decoration: none;
   transition: transform 0.2s, box-shadow 0.2s;
+  animation: pulseFloat 3.2s ease-in-out infinite;
 }
 
 .wa-btn:hover {
@@ -1229,6 +1340,47 @@ footer {
 .wa-btn svg {
   width: 28px; height: 28px;
   fill: var(--white);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s var(--ease-smooth), transform 0.7s var(--ease-smooth);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal-left { transform: translateX(-38px); }
+.reveal-right { transform: translateX(38px); }
+.reveal-scale { transform: translateY(24px) scale(0.96); }
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translate(0, 0) scale(1);
+}
+
+@keyframes pulseFloat {
+  0%, 100% { transform: translateY(0) scale(1); box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
+  50% { transform: translateY(-6px) scale(1.03); box-shadow: 0 14px 30px rgba(37,211,102,0.45); }
+}
+
+@keyframes ctaDrift {
+  from { background-position: center, center; }
+  to { background-position: center, 54% center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .reveal,
+  .reveal-left,
+  .reveal-right,
+  .reveal-scale {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 /* ─────────── RESPONSIVE ─────────── */
@@ -1341,15 +1493,15 @@ footer {
 
   <div class="hero-stats-bar">
     <div class="hero-stat">
-      <div class="hero-stat-number">9+</div>
+      <div class="hero-stat-number count-up" data-count="9" data-suffix="+">9+</div>
       <div class="hero-stat-label">Clientes corp.</div>
     </div>
     <div class="hero-stat">
-      <div class="hero-stat-number">3</div>
+      <div class="hero-stat-number count-up" data-count="3">3</div>
       <div class="hero-stat-label">Líneas de servicio</div>
     </div>
     <div class="hero-stat">
-      <div class="hero-stat-number">100%</div>
+      <div class="hero-stat-number count-up" data-count="100" data-suffix="%">100%</div>
       <div class="hero-stat-label">Compromiso</div>
     </div>
   </div>
@@ -1386,7 +1538,7 @@ footer {
     <div class="nosotros-image-wrap">
       <div class="nosotros-img-placeholder"></div>
       <div class="nosotros-badge">
-        <div class="nosotros-badge-num">9+</div>
+        <div class="nosotros-badge-num count-up" data-count="9" data-suffix="+">9+</div>
         <div class="nosotros-badge-label">Clientes<br>corporativos</div>
       </div>
     </div>
@@ -1726,6 +1878,100 @@ footer {
     <path d="M12.003 2C6.477 2 2.003 6.474 2.003 12c0 1.885.52 3.651 1.425 5.17L2 22l4.946-1.387A9.948 9.948 0 0012.003 22C17.529 22 22 17.526 22 12S17.529 2 12.003 2zm0 18.18a8.17 8.17 0 01-4.434-1.302l-.317-.189-3.287.921.927-3.21-.207-.329A8.177 8.177 0 013.82 12c0-4.51 3.672-8.18 8.183-8.18 4.51 0 8.182 3.67 8.182 8.18 0 4.51-3.672 8.18-8.182 8.18z"/>
   </svg>
 </a>
+
+<script>
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const revealGroups = [
+    { selector: '.intro-item', effect: 'reveal', stagger: 110 },
+    { selector: '#nosotros .nosotros-image-wrap', effect: 'reveal-left', stagger: 0 },
+    { selector: '#nosotros .section-tag, #nosotros .section-title, #nosotros .section-body, #nosotros .quote-block', effect: 'reveal', stagger: 90 },
+    { selector: '#nosotros .valor-chip', effect: 'reveal-scale', stagger: 90 },
+    { selector: '.servicios-header > *', effect: 'reveal', stagger: 110 },
+    { selector: '.servicio-card', effect: 'reveal-scale', stagger: 120 },
+    { selector: '.clientes-header > *', effect: 'reveal', stagger: 90 },
+    { selector: '.cliente-logo-item', effect: 'reveal-scale', stagger: 70 },
+    { selector: '.cta-band-text, .cta-band .btn-orange', effect: 'reveal', stagger: 120 },
+    { selector: '#contacto .section-tag, #contacto .section-title, #contacto .section-body', effect: 'reveal', stagger: 90 },
+    { selector: '.contacto-info-item', effect: 'reveal-right', stagger: 90 },
+    { selector: '.contacto-form-wrap', effect: 'reveal-scale', stagger: 0 },
+    { selector: '.footer-top > div, .footer-bottom > *', effect: 'reveal', stagger: 80 }
+  ];
+
+  const revealElements = [];
+
+  revealGroups.forEach(({ selector, effect, stagger }) => {
+    document.querySelectorAll(selector).forEach((element, index) => {
+      if (element.classList.contains('reveal-bound')) return;
+      element.classList.add('reveal-bound', 'reveal', effect);
+      element.style.setProperty('--reveal-delay', `${index * stagger}ms`);
+      revealElements.push(element);
+    });
+  });
+
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-visible');
+      observer.unobserve(entry.target);
+    });
+  }, {
+    threshold: 0.16,
+    rootMargin: '0px 0px -8% 0px'
+  });
+
+  revealElements.forEach((element) => revealObserver.observe(element));
+
+  const formatCountValue = (value, suffix, padLength) => {
+    const safeValue = Math.round(value).toString().padStart(padLength, '0');
+    return `${safeValue}${suffix}`;
+  };
+
+  const runCountUp = (element) => {
+    if (element.dataset.counted === 'true') return;
+
+    const target = Number(element.dataset.count || 0);
+    const suffix = element.dataset.suffix || '';
+    const padLength = Number(element.dataset.pad || 0);
+
+    element.dataset.counted = 'true';
+
+    if (prefersReducedMotion) {
+      element.textContent = formatCountValue(target, suffix, padLength);
+      return;
+    }
+
+    const duration = Number(element.dataset.duration || 1400);
+    const startTime = performance.now();
+
+    const tick = (now) => {
+      const progress = Math.min((now - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      element.textContent = formatCountValue(target * eased, suffix, padLength);
+
+      if (progress < 1) {
+        requestAnimationFrame(tick);
+      }
+    };
+
+    requestAnimationFrame(tick);
+  };
+
+  const countObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      runCountUp(entry.target);
+      observer.unobserve(entry.target);
+    });
+  }, {
+    threshold: 0.45,
+    rootMargin: '0px 0px -6% 0px'
+  });
+
+  document.querySelectorAll('.count-up').forEach((element) => {
+    countObserver.observe(element);
+  });
+</script>
 
 </body>
 </html>
