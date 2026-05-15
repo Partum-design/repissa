@@ -1090,6 +1090,21 @@ footer {
 
 .footer-brand-col {}
 
+.footer-brand-col,
+.footer-brand-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.footer-brand-logo {
+  height: 138px;
+  width: auto;
+  display: block;
+  margin-bottom: 20px;
+}
+
 .footer-logo-text {
   font-family: var(--font-h);
   font-size: 24px;
@@ -1114,7 +1129,8 @@ footer {
   font-size: 13px;
   color: rgba(255,255,255,0.4);
   line-height: 1.75;
-  max-width: 260px;
+  max-width: 340px;
+  margin: 0 auto;
 }
 
 .footer-col-title {
@@ -1652,7 +1668,7 @@ footer {
 <footer>
   <div class="footer-top">
     <div class="footer-brand-col">
-      <img src="Mesa_de_trabajo_1_300x.png" alt="REPISSA – Espacios y Recubrimientos Especializados" style="height:120px;width:auto;display:block;margin-bottom:16px;">
+      <img class="footer-brand-logo" src="Mesa_de_trabajo_1_300x.png" alt="REPISSA – Espacios y Recubrimientos Especializados">
       <p class="footer-brand-desc">
         Empresa especializada en recubrimientos epóxicos, impermeabilizantes y cancelería. Calidad y compromiso en cada proyecto.
       </p>

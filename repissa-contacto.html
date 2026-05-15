@@ -496,10 +496,22 @@ footer { background: var(--dark); padding: 60px 6% 28px; }
   gap: 48px; padding-bottom: 48px;
   border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 28px;
 }
+.footer-brand-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.footer-brand-logo {
+  height: 138px;
+  width: auto;
+  display: block;
+  margin-bottom: 20px;
+}
 .footer-logo-text { font-family: var(--font-h); font-size: 24px; font-weight: 900; color: var(--white); letter-spacing: 0.08em; margin-bottom: 4px; }
 .footer-logo-text span { color: var(--orange); }
 .footer-logo-sub { font-size: 9px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--orange); margin-bottom: 16px; }
-.footer-brand-desc { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.75; max-width: 260px; }
+.footer-brand-desc { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.75; max-width: 340px; margin: 0 auto; }
 .footer-col-title { font-family: var(--font-h); font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 20px; }
 .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
 .footer-links a { font-size: 13.5px; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
@@ -867,8 +879,8 @@ footer { background: var(--dark); padding: 60px 6% 28px; }
 <!-- ═══ FOOTER ═══ -->
 <footer>
   <div class="footer-top">
-    <div>
-      <img src="Mesa_de_trabajo_1_300x.png" alt="REPISSA – Espacios y Recubrimientos Especializados" style="height:90px;width:auto;display:block;margin-bottom:16px;">
+    <div class="footer-brand-col">
+      <img class="footer-brand-logo" src="Mesa_de_trabajo_1_300x.png" alt="REPISSA – Espacios y Recubrimientos Especializados">
       <p class="footer-brand-desc">Empresa especializada en recubrimientos epóxicos, impermeabilizantes y cancelería. Calidad y compromiso en cada proyecto.</p>
     </div>
     <div>
