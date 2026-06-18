@@ -33,7 +33,7 @@ nav {
   align-items: center;
   justify-content: space-between;
   padding: 0 6%;
-  height: 72px;
+  height: 80px;
   background: rgba(255,255,255,0.96);
   backdrop-filter: blur(8px);
   box-shadow: 0 1px 20px rgba(0,0,0,0.08);
@@ -47,7 +47,7 @@ nav {
 }
 
 .nav-logo img {
-  height: 112px;
+  height: 148px;
   width: auto;
   display: block;
 }
@@ -141,7 +141,16 @@ nav {
 }
 
 .hero-slider .hero-slide:not(:first-child) {
-  display: none;
+  display: block;
+}
+.hero-slider .hero-slide:nth-child(1) {
+  animation: heroStillMotion 18s ease-in-out infinite alternate, heroSlide1 18s ease-in-out infinite;
+}
+.hero-slider .hero-slide:nth-child(2) {
+  animation: heroStillMotion 18s ease-in-out infinite alternate, heroSlide2 18s ease-in-out infinite;
+}
+.hero-slider .hero-slide:nth-child(3) {
+  animation: heroStillMotion 18s ease-in-out infinite alternate, heroSlide3 18s ease-in-out infinite;
 }
 
 .hero-shape {
@@ -442,6 +451,29 @@ nav {
   to { transform: scale(1.06) translateY(-8px); }
 }
 
+@keyframes heroSlide1 {
+  0%   { opacity: 1; }
+  30%  { opacity: 1; }
+  36%  { opacity: 0; }
+  94%  { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes heroSlide2 {
+  0%   { opacity: 0; }
+  30%  { opacity: 0; }
+  36%  { opacity: 1; }
+  63%  { opacity: 1; }
+  69%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+@keyframes heroSlide3 {
+  0%   { opacity: 0; }
+  63%  { opacity: 0; }
+  69%  { opacity: 1; }
+  94%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+
 @keyframes floatShape {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-18px); }
@@ -551,7 +583,7 @@ nav {
       rgba(30,30,30,0.88) 0%,
       rgba(30,30,30,0.55) 100%
     ),
-    url('https://images.unsplash.com/photo-1601987177651-8edfe6c20009?w=900&q=80&auto=format&fit=crop')
+    url('img/NIVELADORES%20CEMENTOSOS%7D/WhatsApp%20Image%202026-06-16%20at%204.47.39%20PM.jpeg')
     center/cover no-repeat;
   transition: transform 0.6s var(--ease-smooth), box-shadow 0.6s var(--ease-smooth);
 }
@@ -958,7 +990,7 @@ nav {
       rgba(20,20,20,0.95) 0%,
       rgba(20,20,20,0.75) 100%
     ),
-    url('https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=1600&q=80&auto=format&fit=crop')
+    url('img/AUTONIVELANTES/WhatsApp%20Image%202026-06-16%20at%204.38.32%20PM.jpeg')
     center/cover no-repeat;
   padding: 80px 6%;
   display: flex;
@@ -1209,10 +1241,10 @@ footer {
 }
 
 .footer-brand-logo {
-  height: 138px;
+  height: 185px;
   width: auto;
   display: block;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 .footer-logo-text {
@@ -1447,26 +1479,26 @@ footer {
 
 <!-- ─── NAVBAR ─── -->
 <nav>
-  <a href="index.html" class="nav-logo">
+  <a href="/" class="nav-logo">
     <img src="Mesa_de_trabajo_1_300x.png" alt="REPISSA – Espacios y Recubrimientos Especializados">
   </a>
 
   <ul class="nav-links">
     <li><a href="#inicio" class="active">Inicio</a></li>
-    <li><a href="repissa-servicios.html">Servicios</a></li>
+    <li><a href="/repissa-servicios">Servicios</a></li>
     <li><a href="#clientes">Clientes</a></li>
-    <li><a href="repissa-contacto.html">Contacto</a></li>
+    <li><a href="/repissa-contacto">Contacto</a></li>
   </ul>
 
-  <a href="repissa-contacto.html" class="nav-cta">Cotizar</a>
+  <a href="/repissa-contacto" class="nav-cta">Cotizar</a>
 </nav>
 
 <!-- ─── HERO ─── -->
 <section id="inicio">
   <div class="hero-slider">
-    <div class="hero-slide" style="--hero-image:url('https://images.unsplash.com/photo-1536895058696-a69b1c7ba34f?w=1920&q=80&auto=format&fit=crop');"></div>
-    <div class="hero-slide" style="--hero-image:url('https://images.unsplash.com/photo-1517581177682-a085bb7ffb15?w=1920&q=80&auto=format&fit=crop');"></div>
-    <div class="hero-slide" style="--hero-image:url('https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1920&q=80&auto=format&fit=crop');"></div>
+    <div class="hero-slide" style="--hero-image:url('img/AUTONIVELANTES/WhatsApp%20Image%202026-06-16%20at%204.41.42%20PM.jpeg');"></div>
+    <div class="hero-slide" style="--hero-image:url('img/RECUBRIMIENTO%20POLIURETANO/WhatsApp%20Image%202026-06-16%20at%203.49.14%20PM.jpeg');"></div>
+    <div class="hero-slide" style="--hero-image:url('img/POLIURETANO%20CEMENTOSOS/WhatsApp%20Image%202026-06-16%20at%204.41.43%20PM.jpeg');"></div>
   </div>
   <div class="hero-shape hero-shape-one"></div>
   <div class="hero-shape hero-shape-two"></div>
@@ -1486,8 +1518,8 @@ footer {
       Empresa especializada en recubrimientos epóxicos, impermeabilizantes y cancelería. Experiencia, calidad y compromiso en cada proyecto industrial y residencial.
     </p>
     <div class="hero-actions">
-      <a href="repissa-servicios.html" class="btn-orange">Ver servicios &nbsp;→</a>
-      <a href="repissa-contacto.html" class="btn-outline-white">Solicitar cotización</a>
+      <a href="/repissa-servicios" class="btn-orange">Ver servicios &nbsp;→</a>
+      <a href="/repissa-contacto" class="btn-outline-white">Solicitar cotización</a>
     </div>
   </div>
 
@@ -1578,7 +1610,7 @@ footer {
       </div>
       <h2 class="section-title">Nuestros <em>Servicios</em></h2>
     </div>
-    <a href="repissa-contacto.html" class="btn-orange">Solicitar cotización →</a>
+    <a href="/repissa-contacto" class="btn-orange">Solicitar cotización →</a>
   </div>
 
   <div class="servicios-grid">
@@ -1586,7 +1618,7 @@ footer {
     <!-- Card 1 -->
     <div class="servicio-card">
       <div class="servicio-thumb">
-        <div class="servicio-thumb-bg" style="background-image: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80&auto=format&fit=crop');"></div>
+        <div class="servicio-thumb-bg" style="background-image: url('img/AUTONIVELANTES/WhatsApp%20Image%202026-06-16%20at%203.49.15%20PM.jpeg');"></div>
         <div class="servicio-thumb-overlay"></div>
         <div class="servicio-thumb-num">01</div>
       </div>
@@ -1609,7 +1641,7 @@ footer {
     <!-- Card 2 -->
     <div class="servicio-card">
       <div class="servicio-thumb">
-        <div class="servicio-thumb-bg" style="background-image: url('https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&q=80&auto=format&fit=crop');"></div>
+        <div class="servicio-thumb-bg" style="background-image: url('img/POLIURETANO%20CEMENTOSOS/WhatsApp%20Image%202026-06-16%20at%204.41.43%20PM.jpeg');"></div>
         <div class="servicio-thumb-overlay"></div>
         <div class="servicio-thumb-num">02</div>
       </div>
@@ -1632,7 +1664,7 @@ footer {
     <!-- Card 3 -->
     <div class="servicio-card">
       <div class="servicio-thumb">
-        <div class="servicio-thumb-bg" style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80&auto=format&fit=crop');"></div>
+        <div class="servicio-thumb-bg" style="background-image: url('img/CANCELERIA/WhatsApp%20Image%202026-06-16%20at%204.53.45%20PM.jpeg');"></div>
         <div class="servicio-thumb-overlay"></div>
         <div class="servicio-thumb-num">03</div>
       </div>
@@ -1724,7 +1756,7 @@ footer {
     <h2>¿Tienes un proyecto<br>en mente?</h2>
     <p>Cuéntanos de tu espacio y te asesoramos sin costo. Trabajamos en todo el Estado de México y CDMX.</p>
   </div>
-  <a href="repissa-contacto.html" class="btn-orange" style="font-size:15px;padding:16px 40px;white-space:nowrap;">Hablemos de tu proyecto &nbsp;→</a>
+  <a href="/repissa-contacto" class="btn-orange" style="font-size:15px;padding:16px 40px;white-space:nowrap;">Hablemos de tu proyecto &nbsp;→</a>
 </div>
 
 <!-- ─── CONTACTO ─── -->
@@ -1831,19 +1863,19 @@ footer {
       <ul class="footer-links">
         <li><a href="#inicio">Inicio</a></li>
         <li><a href="#nosotros">Nosotros</a></li>
-        <li><a href="repissa-servicios.html">Servicios</a></li>
+        <li><a href="/repissa-servicios">Servicios</a></li>
         <li><a href="#clientes">Clientes</a></li>
-        <li><a href="repissa-contacto.html">Contacto</a></li>
+        <li><a href="/repissa-contacto">Contacto</a></li>
       </ul>
     </div>
 
     <div>
       <p class="footer-col-title">Servicios</p>
       <ul class="footer-links">
-        <li><a href="repissa-servicios.html#recubrimientos">Recubrimientos Industriales</a></li>
-        <li><a href="repissa-servicios.html#impermeabilizantes">Impermeabilizantes</a></li>
-        <li><a href="repissa-servicios.html#canceleria">Cancelería Sanitaria</a></li>
-        <li><a href="repissa-servicios.html#canceleria">Cancelería Residencial</a></li>
+        <li><a href="/repissa-servicios#recubrimientos">Recubrimientos Industriales</a></li>
+        <li><a href="/repissa-servicios#impermeabilizantes">Impermeabilizantes</a></li>
+        <li><a href="/repissa-servicios#canceleria">Cancelería Sanitaria</a></li>
+        <li><a href="/repissa-servicios#canceleria">Cancelería Residencial</a></li>
       </ul>
     </div>
 
@@ -1866,7 +1898,10 @@ footer {
 
   <div class="footer-bottom">
     <p class="footer-copy">© 2025 REPISSA – Todos los derechos reservados.</p>
-    <a href="https://partumdesign.com.mx" target="_blank" class="footer-web">Realizado por Partum Design</a>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <span style="font-size:11px;color:rgba(255,255,255,0.3);font-family:var(--font-h);letter-spacing:0.08em;text-transform:uppercase;">Desarrollado por:</span>
+      <a href="https://partumdesign.com.mx" target="_blank" class="footer-web">Partum Design</a>
+    </div>
   </div>
 </footer>
 
