@@ -21,7 +21,7 @@
   --font-b: 'Open Sans', sans-serif;
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
 body { font-family: var(--font-b); color: var(--dark); overflow-x: hidden; }
 
 /* ─── NAVBAR ─── */
@@ -47,7 +47,7 @@ nav {
 }
 
 .nav-logo img {
-  height: 148px;
+  height: 170px;
   width: auto;
   display: block;
 }
@@ -322,7 +322,7 @@ nav {
   border-radius: 4px;
   background:
     linear-gradient(145deg, rgba(20,20,20,0.45) 0%, rgba(20,20,20,0.12) 100%),
-    url('img/AUTONIVELANTES/WhatsApp%20Image%202026-06-16%20at%204.32.00%20PM.jpeg') center/cover;
+    url('img/AUTONIVELANTES/WhatsApp%20Image%202026-06-16%20at%204.41.41%20PM.jpeg') center/cover;
 }
 
 .ri-badge {
@@ -474,7 +474,7 @@ nav {
   border-radius: 4px;
   background:
     linear-gradient(145deg, rgba(20,20,20,0.45) 0%, rgba(20,20,20,0.12) 100%),
-    url('img/POLIURETANO%20CEMENTOSOS/WhatsApp%20Image%202026-06-16%20at%204.41.43%20PM%20%281%29.jpeg') center/cover;
+    url('img/IMPERMEABILIZANTES/MEMBRANA%20DE%20POLIURETANOS/WhatsApp%20Image%202026-06-16%20at%204.33.23%20PM.jpeg') center/cover;
 }
 
 .imp-items-grid {
@@ -641,14 +641,14 @@ nav {
   border-radius: 4px;
   background:
     linear-gradient(145deg, rgba(20,20,20,0.4) 0%, rgba(20,20,20,0.1) 100%),
-    url('img/CANCELERIA/WhatsApp%20Image%202026-06-16%20at%203.51.42%20PM.jpeg') center/cover;
+    url('img/CANCELERIA/WhatsApp%20Image%202026-06-16%20at%204.32.01%20PM.jpeg') center/cover;
 }
 
 /* ─── CTA BAND ─── */
 .cta-band {
   background:
     linear-gradient(105deg, rgba(20,20,20,0.94) 0%, rgba(20,20,20,0.75) 100%),
-    url('img/AUTONIVELANTES/WhatsApp%20Image%202026-06-16%20at%204.38.32%20PM.jpeg') center/cover no-repeat;
+    url('img/CANCELERIA/WhatsApp%20Image%202026-06-16%20at%204.38.32%20PM.jpeg') center/cover no-repeat;
   padding: 80px 6%;
   display: flex;
   align-items: center;
@@ -715,7 +715,7 @@ footer {
 }
 
 .footer-brand-logo {
-  height: 185px;
+  height: 220px;
   width: auto;
   display: block;
   margin-bottom: 24px;
@@ -922,8 +922,100 @@ footer {
   .tab-btn { padding: 16px 18px; font-size: 11px; }
 }
 
+/* ─── HAMBURGER + OFF-CANVAS ─── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 1001;
+}
+.nav-hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--dark);
+  border-radius: 2px;
+  transition: transform 0.3s, opacity 0.3s;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.offcanvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 280px;
+  height: 100%;
+  background: var(--white);
+  z-index: 1000;
+  transform: translateX(-100%);
+  transition: transform 0.35s cubic-bezier(0.22,1,0.36,1);
+  display: flex;
+  flex-direction: column;
+  padding: 100px 0 40px;
+  box-shadow: 4px 0 30px rgba(0,0,0,0.12);
+}
+.offcanvas.open { transform: translateX(0); }
+
+.offcanvas-nav {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  padding: 0 32px;
+}
+.offcanvas-nav li { border-bottom: 1px solid #f0f0f0; }
+.offcanvas-nav a {
+  display: block;
+  padding: 16px 0;
+  font-family: var(--font-h);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dark);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.offcanvas-nav a:hover, .offcanvas-nav a.active { color: var(--orange); }
+
+.offcanvas-cta {
+  margin: 28px 32px 0;
+  background: var(--orange);
+  color: var(--white);
+  font-family: var(--font-h);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 14px 24px;
+  border-radius: 4px;
+  text-decoration: none;
+  text-align: center;
+  display: block;
+  transition: background 0.2s;
+}
+.offcanvas-cta:hover { background: var(--orange-hover); }
+
+.offcanvas-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+.offcanvas-overlay.open { opacity: 1; pointer-events: auto; }
+
 @media (max-width: 640px) {
+  .nav-hamburger { display: flex; }
   .nav-links { display: none; }
+  .nav-cta   { display: none; }
+  .nav-logo img { height: 110px !important; }
   .imp-items-grid { grid-template-columns: 1fr; }
   .can-block-body { grid-template-columns: 1fr; }
   .items-grid { grid-template-columns: 1fr; }
@@ -969,7 +1061,22 @@ footer {
   </ul>
 
   <a href="/repissa-contacto" class="nav-cta">Cotizar</a>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- Off-canvas móvil -->
+<div class="offcanvas" id="offcanvas">
+  <ul class="offcanvas-nav">
+    <li><a href="/">Inicio</a></li>
+    <li><a href="/repissa-servicios" class="active">Servicios</a></li>
+    <li><a href="/#clientes">Clientes</a></li>
+    <li><a href="/repissa-contacto">Contacto</a></li>
+  </ul>
+  <a href="/repissa-contacto" class="offcanvas-cta">Cotizar</a>
+</div>
+<div class="offcanvas-overlay" id="offcanvasOverlay"></div>
 
 <!-- ─── HERO ─── -->
 <div class="page-hero">
@@ -1076,7 +1183,7 @@ footer {
         <img src="img/AUTONIVELANTES/WhatsApp%20Image%202026-06-16%20at%204.41.42%20PM.jpeg" alt="Piso autonivelante epóxico industrial" loading="lazy">
       </div>
       <div class="gallery-item">
-        <img src="img/AUTONIVELANTES/WhatsApp%20Image%202026-06-16%20at%204.38.31%20PM.jpeg" alt="Recubrimiento epóxico" loading="lazy">
+        <img src="img/NIVELADORES%20CEMENTOSOS%7D/WhatsApp%20Image%202026-06-16%20at%203.51.39%20PM.jpeg" alt="Nivelador cementoso" loading="lazy">
       </div>
       <div class="gallery-item">
         <img src="img/MUROS%20LISOS%20SANITARIOS/WhatsApp%20Image%202026-06-16%20at%203.51.41%20PM.jpeg" alt="Muro liso sanitario" loading="lazy">
@@ -1162,19 +1269,19 @@ footer {
       <div class="gallery-label">Proyectos realizados</div>
       <div class="gallery-masonry">
         <div class="gallery-item featured">
-          <img src="img/POLIURETANO%20CEMENTOSOS/WhatsApp%20Image%202026-06-16%20at%204.41.43%20PM.jpeg" alt="Impermeabilizante poliuretano cementoso" loading="lazy">
+          <img src="img/IMPERMEABILIZANTES/PREFABRICADOS/WhatsApp%20Image%202026-06-16%20at%204.33.25%20PM.jpeg" alt="Impermeabilizante prefabricado" loading="lazy">
         </div>
         <div class="gallery-item">
-          <img src="img/POLIURETANO%20CEMENTOSOS/WhatsApp%20Image%202026-06-16%20at%204.29.39%20PM.jpeg" alt="Sistema impermeabilizante" loading="lazy">
+          <img src="img/IMPERMEABILIZANTES/CEMENTOSOS/WhatsApp%20Image%202026-06-16%20at%203.49.08%20PM.jpeg" alt="Sistema cementoso impermeabilizante" loading="lazy">
         </div>
         <div class="gallery-item">
-          <img src="img/POLIURETANO%20CEMENTOSOS/WhatsApp%20Image%202026-06-16%20at%204.41.42%20PM.jpeg" alt="Poliuretano impermeabilizante" loading="lazy">
+          <img src="img/IMPERMEABILIZANTES/MEMBRANA%20DE%20POLIURETANOS/WhatsApp%20Image%202026-06-16%20at%204.33.24%20PM.jpeg" alt="Membrana de poliuretano" loading="lazy">
         </div>
         <div class="gallery-item">
-          <img src="img/RECUBRIMIENTO%20POLIURETANO/WhatsApp%20Image%202026-06-16%20at%203.49.12%20PM.jpeg" alt="Recubrimiento impermeabilizante" loading="lazy">
+          <img src="img/IMPERMEABILIZANTES/PREFABRICADOS/WhatsApp%20Image%202026-06-16%20at%204.33.26%20PM.jpeg" alt="Impermeabilizante aplicado" loading="lazy">
         </div>
         <div class="gallery-item">
-          <img src="img/POLIURETANO%20CEMENTOSOS/WhatsApp%20Image%202026-06-16%20at%203.49.16%20PM.jpeg" alt="Aplicación impermeabilizante" loading="lazy">
+          <img src="img/IMPERMEABILIZANTES/PREFABRICADOS/WhatsApp%20Image%202026-06-16%20at%204.34.40%20PM.jpeg" alt="Aplicación impermeabilizante" loading="lazy">
         </div>
       </div>
     </div>
@@ -1333,6 +1440,18 @@ footer {
 </a>
 
 <script>
+  // Off-canvas móvil
+  (function() {
+    const hamburger = document.getElementById('navHamburger');
+    const offcanvas = document.getElementById('offcanvas');
+    const overlay   = document.getElementById('offcanvasOverlay');
+    function openMenu()  { hamburger.classList.add('open'); offcanvas.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function closeMenu() { hamburger.classList.remove('open'); offcanvas.classList.remove('open'); overlay.classList.remove('open'); document.body.style.overflow = ''; }
+    hamburger.addEventListener('click', () => offcanvas.classList.contains('open') ? closeMenu() : openMenu());
+    overlay.addEventListener('click', closeMenu);
+    offcanvas.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+  })();
+
   // Smooth scroll to sections via tabs
   function scrollToSection(id, trigger) {
     const el = document.querySelector(id);

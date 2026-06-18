@@ -21,7 +21,7 @@
   --font-b: 'Open Sans', sans-serif;
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
 body { font-family: var(--font-b); color: var(--dark); overflow-x: hidden; }
 
 /* ─────────── NAVBAR ─────────── */
@@ -47,7 +47,7 @@ nav {
 }
 
 .nav-logo img {
-  height: 148px;
+  height: 170px;
   width: auto;
   display: block;
 }
@@ -583,7 +583,7 @@ nav {
       rgba(30,30,30,0.88) 0%,
       rgba(30,30,30,0.55) 100%
     ),
-    url('img/NIVELADORES%20CEMENTOSOS%7D/WhatsApp%20Image%202026-06-16%20at%204.47.39%20PM.jpeg')
+    url('img/OBRA%20CIVIL/WhatsApp%20Image%202026-06-16%20at%204.47.39%20PM.jpeg')
     center/cover no-repeat;
   transition: transform 0.6s var(--ease-smooth), box-shadow 0.6s var(--ease-smooth);
 }
@@ -990,7 +990,7 @@ nav {
       rgba(20,20,20,0.95) 0%,
       rgba(20,20,20,0.75) 100%
     ),
-    url('img/AUTONIVELANTES/WhatsApp%20Image%202026-06-16%20at%204.38.32%20PM.jpeg')
+    url('img/CANCELERIA/WhatsApp%20Image%202026-06-16%20at%204.38.32%20PM.jpeg')
     center/cover no-repeat;
   padding: 80px 6%;
   display: flex;
@@ -1241,7 +1241,7 @@ footer {
 }
 
 .footer-brand-logo {
-  height: 185px;
+  height: 220px;
   width: auto;
   display: block;
   margin-bottom: 24px;
@@ -1443,6 +1443,95 @@ footer {
   .intro-item:last-child { border-bottom: none; }
 }
 
+/* ─── HAMBURGER + OFF-CANVAS ─── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 1001;
+}
+.nav-hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--dark);
+  border-radius: 2px;
+  transition: transform 0.3s, opacity 0.3s;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.offcanvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 280px;
+  height: 100%;
+  background: var(--white);
+  z-index: 1000;
+  transform: translateX(-100%);
+  transition: transform 0.35s cubic-bezier(0.22,1,0.36,1);
+  display: flex;
+  flex-direction: column;
+  padding: 100px 0 40px;
+  box-shadow: 4px 0 30px rgba(0,0,0,0.12);
+}
+.offcanvas.open { transform: translateX(0); }
+
+.offcanvas-nav {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  padding: 0 32px;
+}
+.offcanvas-nav li { border-bottom: 1px solid #f0f0f0; }
+.offcanvas-nav a {
+  display: block;
+  padding: 16px 0;
+  font-family: var(--font-h);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dark);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.offcanvas-nav a:hover, .offcanvas-nav a.active { color: var(--orange); }
+
+.offcanvas-cta {
+  margin: 28px 32px 0;
+  background: var(--orange);
+  color: var(--white);
+  font-family: var(--font-h);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 14px 24px;
+  border-radius: 4px;
+  text-decoration: none;
+  text-align: center;
+  display: block;
+  transition: background 0.2s;
+}
+.offcanvas-cta:hover { background: var(--orange-hover); }
+
+.offcanvas-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+.offcanvas-overlay.open { opacity: 1; pointer-events: auto; }
+
 @media (max-width: 640px) {
   .hero-content {
     padding: 118px 6% 178px;
@@ -1466,7 +1555,10 @@ footer {
   .hero-stat:first-child {
     border-top: none;
   }
+  .nav-hamburger { display: flex; }
   .nav-links { display: none; }
+  .nav-cta  { display: none; }
+  .nav-logo img { height: 110px !important; }
   .f-row     { grid-template-columns: 1fr; }
   .clientes-logos { grid-template-columns: 1fr; }
   .footer-top { grid-template-columns: 1fr; }
@@ -1491,14 +1583,29 @@ footer {
   </ul>
 
   <a href="/repissa-contacto" class="nav-cta">Cotizar</a>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- Off-canvas móvil -->
+<div class="offcanvas" id="offcanvas">
+  <ul class="offcanvas-nav">
+    <li><a href="#inicio" class="active">Inicio</a></li>
+    <li><a href="/repissa-servicios">Servicios</a></li>
+    <li><a href="#clientes">Clientes</a></li>
+    <li><a href="/repissa-contacto">Contacto</a></li>
+  </ul>
+  <a href="/repissa-contacto" class="offcanvas-cta">Cotizar</a>
+</div>
+<div class="offcanvas-overlay" id="offcanvasOverlay"></div>
 
 <!-- ─── HERO ─── -->
 <section id="inicio">
   <div class="hero-slider">
     <div class="hero-slide" style="--hero-image:url('img/AUTONIVELANTES/WhatsApp%20Image%202026-06-16%20at%204.41.42%20PM.jpeg');"></div>
-    <div class="hero-slide" style="--hero-image:url('img/RECUBRIMIENTO%20POLIURETANO/WhatsApp%20Image%202026-06-16%20at%203.49.14%20PM.jpeg');"></div>
-    <div class="hero-slide" style="--hero-image:url('img/POLIURETANO%20CEMENTOSOS/WhatsApp%20Image%202026-06-16%20at%204.41.43%20PM.jpeg');"></div>
+    <div class="hero-slide" style="--hero-image:url('img/RECUBRIMIENTO%20POLIURETANO/WhatsApp%20Image%202026-06-16%20at%204.41.43%20PM.jpeg');"></div>
+    <div class="hero-slide" style="--hero-image:url('img/OBRA%20CIVIL/20190615_101111.jpg');"></div>
   </div>
   <div class="hero-shape hero-shape-one"></div>
   <div class="hero-shape hero-shape-two"></div>
@@ -1641,7 +1748,7 @@ footer {
     <!-- Card 2 -->
     <div class="servicio-card">
       <div class="servicio-thumb">
-        <div class="servicio-thumb-bg" style="background-image: url('img/POLIURETANO%20CEMENTOSOS/WhatsApp%20Image%202026-06-16%20at%204.41.43%20PM.jpeg');"></div>
+        <div class="servicio-thumb-bg" style="background-image: url('img/IMPERMEABILIZANTES/PREFABRICADOS/WhatsApp%20Image%202026-06-16%20at%204.33.25%20PM.jpeg');"></div>
         <div class="servicio-thumb-overlay"></div>
         <div class="servicio-thumb-num">02</div>
       </div>
@@ -1915,6 +2022,18 @@ footer {
 </a>
 
 <script>
+  // Off-canvas móvil
+  (function() {
+    const hamburger = document.getElementById('navHamburger');
+    const offcanvas = document.getElementById('offcanvas');
+    const overlay   = document.getElementById('offcanvasOverlay');
+    function openMenu()  { hamburger.classList.add('open'); offcanvas.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function closeMenu() { hamburger.classList.remove('open'); offcanvas.classList.remove('open'); overlay.classList.remove('open'); document.body.style.overflow = ''; }
+    hamburger.addEventListener('click', () => offcanvas.classList.contains('open') ? closeMenu() : openMenu());
+    overlay.addEventListener('click', closeMenu);
+    offcanvas.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+  })();
+
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   const revealGroups = [
